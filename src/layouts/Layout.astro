@@ -1,0 +1,78 @@
+---
+import '../styles/global.css';
+
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/inter/800.css';
+
+import '@fontsource/material-symbols-outlined/index.css';
+
+interface Props {
+    title?: string;
+    description?: string;
+}
+
+const { 
+    title = "Jakub Wojtyna| Fullstack Developer", 
+    description = "20-yo Full-Stack Developer specialized in enterprise .NET systems and dynamic Next.js/React applications."
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "");
+---
+
+<!DOCTYPE html>
+<html lang="pl" class="scroll-smooth">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        
+        <link rel="canonical" href={canonicalURL} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:site_name" content="Jakub Wojtyna Portfolio" />
+        <meta property="og:locale" content="pl_PL" />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={canonicalURL} />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="theme-color" content="#10141a" />
+    </head>
+    <body class="bg-[#10141a] text-[#dfe2eb] font-inter overflow-x-hidden antialiased selection:bg-[#00f0ff] selection:text-[#00363a]">
+        <slot />
+
+        <script>
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+                observer.observe(section);
+            });
+        </script>
+    </body>
+</html>

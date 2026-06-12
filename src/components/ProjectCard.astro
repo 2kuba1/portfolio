@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  title: string;
+  description: string;
+  tags: string[];
+  imageSrc: ImageMetadata;
+  location: string;
+  link: string;
+  isHighlight?: boolean;
+}
+
+const { title, description, tags, imageSrc, location, link, isHighlight = false } = Astro.props;
+---
+<a href={link} target="_blank" rel="noopener noreferrer" class={`block rounded-xl overflow-hidden shadow-2xl border transition-all duration-300 group h-full ${isHighlight ? 'border-[#00f0ff]/40 bg-[#151b22] hover:border-[#00f0ff]' : 'border-[#3b494b]/30 bg-[#1c2026] hover:border-[#3b494b]'}`}>
+  <div class="relative h-48 overflow-hidden">
+    <Image
+      src={imageSrc}
+      alt={`Screenshot of ${title}`}
+      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-70" 
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-[#10141a] via-transparent to-transparent"></div>
+    
+    <div class="absolute bottom-4 left-6 flex items-center gap-1 text-[#00f0ff] font-mono text-[11px] font-bold uppercase tracking-wider bg-[#10141a]/90 backdrop-blur-md px-2.5 py-1 rounded border border-[#3b494b]/30">
+      {location}
+    </div>
+  </div>
+
+  <div class="p-6 h-[200px] flex flex-col justify-between">
+    <div class="space-y-3">
+      <h3 class="text-[20px] font-bold text-white font-sans group-hover:text-[#00f0ff] transition-colors">{title}</h3>
+      <p class="text-[14px] text-[#b9cacb] font-sans leading-relaxed line-clamp-3">{description}</p>
+    </div>
+
+    <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+      {tags.map((tag) => (
+        <span class="px-2 py-0.5 bg-[#10141a] text-[#a5e7ff] border border-[#3b494b]/20 rounded">{tag}</span>
+      ))}
+    </div>
+  </div>
+</a>

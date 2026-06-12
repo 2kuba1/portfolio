@@ -1,0 +1,11 @@
+---
+interface Props {
+  text?: string;
+}
+
+const { text = "System Status: Optimal" } = Astro.props;
+---
+<div class="mb-6 inline-flex items-center gap-2 px-3 py-1 bg-[rgba(22,27,34,0.7)] backdrop-blur-xl border border-[rgba(219,252,255,0.1)] rounded-full">
+  <span class="w-1 h-1 bg-[#00f0ff] rounded-full animate-pulse"></span>
+  <span class="text-[12px] font-semibold font-mono text-[#dbfcff] uppercase tracking-widest">{text}</span>
+</div>

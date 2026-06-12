@@ -1,0 +1,9 @@
+{
+  "name": "Jakub Wojtyna | Fullstack Developer",
+  "short_name": "2kuba1s portfolio",
+  "description": "Full-Stack Developeras portfolio: .NET, Next.js, and system architecture.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#10141a",
+  "theme_color": "#00f0ff"
+}

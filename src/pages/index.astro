@@ -1,0 +1,312 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import Header from '../components/Header.astro';
+import StatusBadge from '../components/StatusBadge.astro';
+import GlassCard from '../components/GlassCard.astro';
+import StackItem from '../components/StackItem.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import TimelineItem from '../components/TimelineItem.astro';
+
+import noimage from '../assets/noimage.webp';
+import taximanager from '../assets/taximanager.png';
+import dotnetllmrag from '../assets/dotnetllmrag.png';
+import prawko from '../assets/prawko.jpg';
+import man from '../assets/man1.png';
+import fundacja from '../assets/fundacja.png';
+import tasksmanager from '../assets/taskmanager.png';
+import discord from '../assets/discord.png';
+import ide from '../assets/ide.png';
+
+const projects = [
+  {
+    title: "PrawkoAi",
+    description: "AI-powered mobile application for driving license exam preparation in Poland. Combines official question banks with Google Gemini intelligence, customized analytics, multi-language support, automated device orchestration, and optimized PostgreSQL/Redis backends. Planned as commercial SaaS.",
+    tags: ["React Native", "Expo", "ASP.NET Core", "PostgreSQL", "Redis", "Gemini API", "JWT", "Docker"],
+    location: "Mobile & Backend Infrastructure",
+    imageSrc: prawko,
+    link: "https://github.com/2kuba1/PrawkoAi",
+    isHighlight: true
+  },
+  {
+    title: "taxi-fleet-manager (in progress)",
+    description: "A backend system for taxi fleet management. Implements a rich domain model using Value Objects and Factory patterns to ensure data consistency. Features isolated service boundaries, comprehensive test suites, automated mileage-based employee settlements, and transactional safety.",    tags: [".NET 10.0", "EF Core", "PostgreSQL", "DDD", "CQRS", "Unit Testing", "Docker"],
+    location: "Enterprise Domain Backend",
+    imageSrc: taximanager,
+    link: "https://github.com/2kuba1/taxi-fleet-manager",
+    isHighlight: true
+  },
+  {
+    title: "DOTNET-LLM-RAG",
+    description: "A console application implementing full Retrieval-Augmented Generation (RAG) processes locally. Connects to local LLMs (Ollama) for embedings and dynamic response generation. Uses vector-based cosine similarity search on memory-mapped datasets and local JSON storage.",
+    tags: ["C#", ".NET 8+", "Ollama", "Semantic Kernel", "Vector Search", "RAG"],
+    location: "Local AI Orchestration",
+    imageSrc: dotnetllmrag,
+    link: "https://github.com/2kuba1/DOTNET-LLM-RAG"
+  },
+  {
+    title: "Timberman Clone",
+    description: "Fully responsive arcade clone built for mobile web views. Features rich interaction processing and data persistence via Prisma ORM. Successfully tested and deployed live during official high school Open Days to showcase next-gen web gaming frameworks.",
+    tags: ["Next.js", "TypeScript", "Prisma ORM", "Mobile-first Web"],
+    location: "Event Showcase Deployment",
+    imageSrc: man,
+    link: "https://github.com/2kuba1/Timberman-Clone"
+  },
+  {
+    title: "Fundacja Psie Sprawy",
+    description: "A production grade, fully optimized and responsive marketing portal built for a real-world non-profit foundation to handle public outreach and campaign management.",
+    tags: ["Astro", "Tailwind CSS", "Frontend Engineering", "Vercel"],
+    location: "Production Live Portal",
+    imageSrc: fundacja,
+    link: "https://fundacja-psie-sprawy.vercel.app/"
+  },
+  {
+    title: "Discord RP Server Manager",
+    description: "Comprehensive administration automation bot for Grand Theft Auto Roleplay communities. Employs comprehensive event logging, reactive ticket communication, an anti-spam layer, and specialized user whitelist verification loops.",
+    tags: ["JavaScript", "Node.js", "discord.js", "PM2 Process Manager"],
+    location: "Community DevOps Tooling",
+    imageSrc: discord,
+    link: "https://github.com/2kuba1/discord-bot-for-gta-rp-server"
+  },
+  {
+    title: "TasksManager",
+    description: "A full-stack project utility simplifying productivity workflows. Integrates structural service layers with customized PHP models, permission-based access controls, and rapid asset bundling.",
+    tags: ["PHP Laravel", "Vite", "Vue.js", "Tailwind CSS", "PHPUnit"],
+    location: "Productivity Web Engine",
+    imageSrc: tasksmanager,
+    link: "https://github.com/2kuba1/TasksManager"
+  }
+];
+
+const experiences = [
+  {
+    role: "PHP Developer (Internship)",
+    company: "NexMode",
+    period: "2 Months",
+    description: "Worked inside a local software environment managing intensive database structures and legacy software refactoring pipelines.",
+    bullets: [
+      "Simultaneously maintained a large legacy PIM (Product Information Management) system and initiated its complete modular rewrite from scratch.",
+      "Optimized relational models, data queries, and clean reactive views using structural design frameworks."
+    ],
+    tech: ["PHP", "Laravel", "Inertia.js", "MySQL", "Legacy Refactoring"]
+  },
+  {
+    role: "C# & AI Software Engineer (Internship)",
+    company: "Digital Technology Poland (DTP)",
+    period: "2 Months",
+    description: "Contributed within enterprise C# environments following agile paradigms and automated operational workflows.",
+    bullets: [
+      "Developed high-performance custom extension plugins for the professional industrial software package EPLAN.",
+      "Conducted research into localized LLM boundaries, engineering a localized .NET RAG (Retrieval-Augmented Generation) infrastructure archetype.",
+      "Practiced and shipping modules daily within a highly professional Scrum team environment."
+    ],
+    tech: ["C#", ".NET", "AI Research", "RAG Architecture", "EPLAN API", "Scrum"]
+  }
+];
+---
+
+<Layout 
+  title="Jakub Wojtyna | Fullstack Developer Portfolio"
+  description="20-yo Full-Stack Developer specialized in enterprise .NET systems and dynamic Next.js/React applications."
+>
+  <style is:global>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .glow-cyan-hover:hover {
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+    }
+    .cyan-square {
+      width: 4px;
+      height: 4px;
+      background-color: #00f0ff;
+    }
+  </style>
+
+  <Header />
+
+  <main class="bg-[#10141a] text-[#dfe2eb]">
+    
+    <section class="relative pt-24 pb-20 md:pt-32 md:pb-32 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto flex flex-col items-center text-center" aria-label="Main">      
+      <h1 class="text-[36px] sm:text-[48px] md:text-[64px] font-extrabold text-[#dfe2eb] mb-8 max-w-5xl leading-tight font-sans tracking-tight">
+          Building Scalable Systems. <br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#dbfcff] via-[#b6ebff] to-[#00d2ff]">Robust Fullstack Architecture.</span>
+      </h1>
+
+      <p class="text-[18px] md:text-[20px] text-[#b9cacb] max-w-2xl mb-12 font-sans leading-relaxed">
+        I am a 20-year-old Fullstack Developer passionate about structural integrity. Specialized in production-grade .NET backends, high-performance API design, and maintainable frontend architectures.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-6 w-full sm:w-auto font-mono text-[12px] font-semibold tracking-wider">
+        <a 
+          class="px-8 py-4 bg-[#00f0ff] text-[#00363a] rounded hover:scale-95 transition-transform glow-cyan-hover flex items-center justify-center gap-2" 
+          href="/cv.pdf" 
+          download="Jakub_Wojtyna_CV.pdf"
+        >
+          DOWNLOAD CV <span class="material-symbols-outlined text-[16px]">download</span>
+        </a>
+        <a class="px-8 py-4 border border-[#dbfcff] text-[#dbfcff] rounded hover:bg-[#dbfcff]/10 transition-all flex items-center justify-center gap-2" href="#contact">
+          GET IN TOUCH <span class="material-symbols-outlined text-[16px]">terminal</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="about" class="py-20 md:py-32 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto border-t border-[#3b494b]/20">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8">
+          <h2 class="text-[28px] md:text-[32px] font-bold text-[#dbfcff] flex items-center gap-4 font-sans">
+            <span class="material-symbols-outlined text-4xl text-[#00f0ff]">code_blocks</span>
+            Architectural Focus
+          </h2>
+          
+          <div class="space-y-6 text-[17px] text-[#b9cacb] font-sans leading-relaxed">
+            <p>
+              I specialize in building scalable, maintainable, and high-performance systems. My approach emphasizes clean architecture, robust backend services, and responsive frontend interfaces.
+            </p>
+            <p>
+              With a strong foundation in .NET and modern JavaScript frameworks, I ensure that every project I undertake is optimized for both performance and user experience.
+            </p>
+            <p>
+              I am always eager to explore new technologies and methodologies that can enhance the quality and efficiency of the solutions I deliver.
+            </p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <div class="absolute -inset-1 bg-gradient-to-tr from-[#00f0ff]/20 to-[#a5e7ff]/5 blur-2xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
+          <GlassCard class="p-2 rounded-xl relative">
+            <img 
+              src={ide.src} 
+              alt="Technical environment" 
+              class="rounded-lg w-full aspect-video object-cover opacity-80"
+            />
+            <div class="absolute bottom-6 right-6 bg-[#10141a]/90 backdrop-blur-xl border border-[rgba(219,252,255,0.1)] px-4 py-2 font-mono text-[13px] text-[#dbfcff]">
+              root@jakub:~$ dotnet --version
+            </div>
+          </GlassCard>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack" class="py-20 md:py-32 bg-[#0a0e14] border-y border-[#3b494b]/20">
+      <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop">
+        <div class="text-center mb-16 space-y-2">
+          <h2 class="text-[28px] md:text-[32px] font-bold text-[#dfe2eb] font-sans">Technical Arsenal</h2>
+          <p class="text-[12px] font-semibold text-[#00f0ff] uppercase tracking-[0.2em] font-mono">Core Competencies & Stack Familiarity</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <GlassCard class="p-8 rounded-xl border-[#00f0ff]/20">
+            <h3 class="text-[20px] font-bold text-[#00f0ff] mb-6 border-b border-[#3b494b]/30 pb-3 font-mono uppercase tracking-wider flex items-center gap-2">
+              <span class="w-2 h-2 bg-[#00f0ff] rounded-full"></span> High Proficiency
+            </h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
+              <StackItem icon="memory" label="ASP.NET Core" />
+              <StackItem icon="deployed_code" label="Next.js" />
+              <StackItem icon="rebase" label="React" />
+              <StackItem icon="smartphone" label="Expo" />
+              <StackItem icon="terminal" label="C#" />
+              <StackItem icon="integration_instructions" label="TypeScript" />
+              <StackItem icon="javascript" label="JavaScript" />
+            </div>
+          </GlassCard>
+
+          <GlassCard class="p-8 rounded-xl">
+            <h3 class="text-[20px] font-bold text-[#b9cacb] mb-6 border-b border-[#3b494b]/30 pb-3 font-mono uppercase tracking-wider flex items-center gap-2">
+              <span class="w-2 h-2 bg-[#849495] rounded-full"></span> Ecosystem & Framework Tools
+            </h3>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center font-mono text-[13px]">
+              <div class="p-3 bg-[#10141a] border border-[#3b494b]/20 rounded text-[#dbfcff]">EF Core</div>
+              <div class="p-3 bg-[#10141a] border border-[#3b494b]/20 rounded text-[#dbfcff]">PostgreSQL</div>
+              <div class="p-3 bg-[#10141a] border border-[#3b494b]/20 rounded text-[#dbfcff]">MySQL</div>
+              <div class="p-3 bg-[#10141a] border border-[#3b494b]/20 rounded text-[#dbfcff]">Astro</div>
+              <div class="p-3 bg-[#10141a] border border-[#3b494b]/20 rounded text-[#dbfcff]">Redis</div>
+              <div class="p-3 bg-[#10141a] border border-[#3b494b]/20 rounded text-[#dbfcff]">Docker</div>
+              <div class="p-3 bg-[#10141a] border border-[#3b494b]/20 rounded text-[#dbfcff]">PHP Laravel</div>
+              <div class="p-3 bg-[#10141a] border border-[#3b494b]/20 rounded text-[#dbfcff]">Inertia.js</div>
+              <div class="p-3 bg-[#10141a] border border-[#3b494b]/20 rounded text-[#dbfcff]">Vite</div>
+            </div>
+          </GlassCard>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="py-20 md:py-32 max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div class="space-y-4 lg:col-span-1">
+          <span class="text-[12px] font-bold text-[#00f0ff] tracking-widest uppercase font-mono block">Professional Background</span>
+          <h2 class="text-[28px] md:text-[32px] font-bold text-[#dfe2eb] font-sans">Career Path</h2>
+          <p class="text-[15px] text-[#b9cacb] leading-relaxed font-sans">
+            My engineering timeline working within specialized software environments, focusing on modular system design, structural code refactoring, and legacy system modernization.
+          </p>
+        </div>
+        
+        <div class="lg:col-span-2 bg-[#0a0e14]/40 border border-[#3b494b]/20 rounded-xl p-6 md:p-10">
+          {experiences.map((exp) => (
+            <TimelineItem
+              role={exp.role}
+              company={exp.company}
+              period={exp.period}
+              description={exp.description}
+              bullets={exp.bullets}
+              tech={exp.tech}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="py-20 md:py-32 bg-[#0a0e14] border-t border-[#3b494b]/20 max-w-full">
+      <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-12">
+        <div class="text-left space-y-3 max-w-2xl">
+          <span class="text-[12px] font-bold text-[#00f0ff] tracking-widest uppercase font-mono block">Production Engine & Sandbox Repositories</span>
+          <h2 class="text-[28px] md:text-[32px] font-bold text-[#dfe2eb] font-sans">Engineering Projects</h2>
+          <p class="text-[15px] text-[#b9cacb] font-sans">
+            A comprehensive overview of architectural deployments, from advanced mobile SaaS paradigms down to event-tested client solutions.
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project) => (
+            <ProjectCard
+              title={project.title}
+              description={project.description}
+              tags={project.tags}
+              location={project.location}
+              imageSrc={project.imageSrc}
+              link={project.link}
+              isHighlight={project.isHighlight}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="w-full bg-[#0a0e14] text-[#b9cacb] font-sans border-t border-[#3b494b]/30">
+    <div class="max-w-7xl mx-auto py-12 md:py-16 px-margin-mobile md:px-margin-desktop">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="space-y-6">
+          <div>
+            <span class="font-bold text-white text-lg font-sans">Jakub <span class="text-[#00f0ff]">| Fullstack Developer</span></span>
+          </div>
+          <p class="font-bold text-white uppercase font-mono text-[11px] tracking-wider">Communication Channels:</p>
+          <div class="text-[15px] leading-relaxed font-mono space-y-1">
+            <p><span class="text-[#00f0ff]">Endpoint Mail:</span> jakub.wojtyna06@gmail.com</p>
+          </div>
+        </div>
+
+        <div class="space-y-3 flex flex-col md:items-end font-mono text-[13px]">
+          <h4 class="text-[11px] font-bold text-[#00f0ff] uppercase tracking-wider mb-2">Links & Resources</h4>
+          <a class="text-white hover:text-[#00f0ff] underline transition-all" href="https://github.com/2kuba1/" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-[#3b494b]/10 py-6 bg-[#10141a]">
+      <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop text-center text-[13px] font-mono text-[#849495]">
+        © 2026 Jakub Wojtyna.
+      </div>
+    </div>
+  </footer>
+</Layout>
