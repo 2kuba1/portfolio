@@ -9,6 +9,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  site: "https://fundacja-psia-sprawa.vercel.app/",
+  site: "https://jakub-wojtyna-portfolio.vercel.app/",
   integrations: [sitemap()],
 });

@@ -3,4 +3,4 @@ Allow: /
 
 Disallow: /404
 
-Sitemap: https://fundacja-psia-sprawa.vercel.app/
+Sitemap: https://jakub-wojtyna-portfolio.vercel.app/
