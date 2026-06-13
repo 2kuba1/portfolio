@@ -17,6 +17,7 @@ import fundacja from '../assets/fundacja.png';
 import tasksmanager from '../assets/taskmanager.png';
 import discord from '../assets/discord.png';
 import ide from '../assets/ide.png';
+import cv from '../assets/cv.pdf';
 
 const projects = [
   {
@@ -140,7 +141,7 @@ const experiences = [
       <div class="flex flex-col sm:flex-row gap-6 w-full sm:w-auto font-mono text-[12px] font-semibold tracking-wider">
         <a 
           class="px-8 py-4 bg-[#00f0ff] text-[#00363a] rounded hover:scale-95 transition-transform glow-cyan-hover flex items-center justify-center gap-2" 
-          href="/cv.pdf" 
+          href={cv} 
           download="Jakub_Wojtyna_CV.pdf"
         >
           DOWNLOAD CV <span class="material-symbols-outlined text-[16px]">download</span>
